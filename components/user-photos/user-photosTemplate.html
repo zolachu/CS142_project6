@@ -1,0 +1,33 @@
+<div class="cs142-photos">
+   <ul ng-if="!checkbox">
+       <li ng-repeat="u in photos.photoList">
+            <div class="cs142-photo">
+                <img aria-label="Photo of user {{u.description}}" ng-src="/images/{{u.file_name}}" alt="/images/{{u}}" class="image" />
+            </div>
+           <div> date: {{u.date_time}}</div>
+           <ul> Comments:
+                <li ng-repeat="x in u.comments" >
+                    <a href="#!/users/{{x.user._id}}" class="comments">{{x.user.first_name}} {{x.user.last_name}}</a> commented:
+                    <p>{{x.comment}}</p>
+               </li>
+           </ul>
+       </li>
+   </ul>
+    <div ng-if="checkbox">
+          <div> photo #{{photos.clicked + 1}}</div>
+            <md-button  ng-disabled="photos.disable" class="cs142-photos-buttons" ng-click="photos.clickedPrev()">previous photo</md-button>
+            <div>
+                <img aria-label="Photo of user {{photos.photo.description}}" ng-src="/images/{{photos.photo.file_name}}" alt="/images/{{photos.photo}}" class="image" />
+            </div>
+            <md-button class="cs142-photos-buttons" ng-click="photos.clickedNext()">next photo</md-button>
+            <div> date: {{photos.photo.date_time}}</div>
+            <ul class="comments"> Comments:
+                <li ng-repeat="x in photos.photo.comments" >
+                    <a href="#!/users/{{x.user._id}}">{{x.user.first_name}} {{x.user.last_name}} commented: </a>
+                    <p>{{x.comment}}</p>
+               </li>
+            </ul>
+    </div>
+</div>
+
+
